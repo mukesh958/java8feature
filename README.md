@@ -13,6 +13,6 @@
 9. First non repeated character from string
 10. Second highest number from an array
 11. Longest String from a String Array
-12. Reduce() method
+12. reduce() method
 
 
