@@ -19,12 +19,17 @@ public class ListArrayStream {
 		Map<String,Long> mapOfStringOccurence=listStr.stream().collect(Collectors.groupingBy(e->e,LinkedHashMap::new,Collectors.counting()));
 		System.out.println("mapOfStringOccurence \n"+mapOfStringOccurence);
 		
+		//reduce() method....
 		//Longest String from a String Array
 		String longestString=listStr.stream().reduce((s1,s2)->s1.length()>s2.length()?s1:s2).get();
 		System.out.println("longestString "+longestString);
 		
-		//reduce() method....
-		
+		String combinedString=listStr.stream().reduce((a1,a2)->a1+"-"+a2).get();
+		System.out.println("combinedString "+combinedString);
+	
+		List<Integer> array = Arrays.asList(-2, 0, 4, 6, 8);
+		int sum=array.stream().reduce((a,b)->a+b).get();
+		System.out.println("sum "+sum);
 		
 	}
 
