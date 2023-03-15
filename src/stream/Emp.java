@@ -1,6 +1,6 @@
 package stream;
 
-public class Emp {
+public class Emp implements Comparable<Emp>{
 
 	Integer id;
 	String name;
@@ -43,7 +43,11 @@ public class Emp {
 	}
 	@Override
 	public String toString() {
-		return "id=" + id + ", name=" + name + ", salary=" + salary +", department="+department;
+		return "{"+"id=" + id + ", name=" + name + ", salary=" + salary +", department="+department+"}";
+	}
+	@Override
+	public int compareTo(Emp o) {
+		return this.id-o.getId();
 	}
 	
 	
