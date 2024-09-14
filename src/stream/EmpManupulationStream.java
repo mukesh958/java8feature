@@ -12,11 +12,17 @@ public class EmpManupulationStream {
 
 	public static void main(String[] args) {
 		List<Emp> list= new ArrayList<Emp>();
-		list.add(new Emp(1, "A", 52,"Dep1"));
-		list.add(new Emp(3, "B", 31,"Dep2"));
-		list.add(new Emp(2, "B", 21,"Dep1"));
-		list.add(new Emp(4, "A", 42,"Dep3"));
-		list.add(new Emp(5, "E", 15,"Dep3"));
+		list.add(new Emp(1, "Rashmi", 50, "HR"));
+		list.add(new Emp(2, "Tina",   30, "HR"));
+		list.add(new Emp(3, "Rina",   40, "HR"));
+		
+		list.add(new Emp(4, "Ravi",   70, "A/C"));
+		list.add(new Emp(5, "Ram",    30, "A/C"));
+		list.add(new Emp(6, "Shyam",  45, "A/C"));
+		
+		list.add(new Emp(7, "Mukesh", 80, "IT"));
+		list.add(new Emp(8, "Rahul",  70, "IT"));
+		list.add(new Emp(9, "Khem",   90, "IT"));
 		
 		//Get the Department wise employee list
 		System.out.println("======Get the Department wise employee list");
@@ -29,6 +35,18 @@ public class EmpManupulationStream {
 		Map<String,Optional<Emp>>departpmentWiseMaxSalary =list.stream().collect(Collectors.groupingBy(emp->emp.getDepartment(), Collectors.maxBy(empSalaryComparator)));
 		departpmentWiseMaxSalary.entrySet().stream().forEach(System.out::println);
 		
+		//Get department Wise Max Salary 
+		System.out.println("======Get department Wise Max Salary ");
+		Map<String, Optional<Integer>> depMax = list.stream().collect(Collectors.groupingBy
+														(Emp::getDepartment,Collectors.mapping(Emp::getSalary,Collectors.maxBy(Integer::compare))));
+		
+		//Get department Wise Employee Name 
+		System.out.println("======Get department Wise Employee Name ");
+		Map<String,List<String>> depWiseName=list.stream().collect(Collectors.groupingBy
+														(Emp::getDepartment,Collectors.mapping(Emp::getName,Collectors.toList())));
+		depWiseName.entrySet().forEach(System.out::println);
+		
+		depMax.entrySet().forEach(System.out::println);
 		//Get department Wise Employee Count
 		System.out.println("======Get department Wise Employee Count");
 		Map<String,Long>departpmentWiseEmployeeCount =list.stream().collect(Collectors.groupingBy(emp->emp.getDepartment(), Collectors.counting()));
