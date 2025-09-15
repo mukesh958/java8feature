@@ -59,13 +59,24 @@ public class SortingDemo {
 												.collect(Collectors.toMap(e->e.getKey(), e->e.getValue(), (e1,e2)->e1,LinkedHashMap::new));
 		System.out.println("sortedBudgetByKey "+sortedBudgetByKey);
 		
+		LinkedHashMap<String, Integer> sortedBudgetByValue = budget.entrySet().stream().sorted(Map.Entry.comparingByValue())
+		                           .collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e2,LinkedHashMap::new));
+		System.out.println("sortedBudgetByValue "+sortedBudgetByValue);
+		
+		
+		//Map Sorting by key (descending order)
+		Map<String, Integer> sortedBudgetByValueDesc = budget.entrySet().stream()
+		    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+		    .collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e1, LinkedHashMap::new));
+		System.out.println("sortedBudgetByValueDesc " + sortedBudgetByValueDesc);
+		
+		
 		//Map Sorting another way. not recomnded..
 	    Map<String, Integer> linkedHashMap= new LinkedHashMap<>();
 		budget.entrySet().stream().sorted(Map.Entry.comparingByValue())
 				.forEachOrdered(e->linkedHashMap.put(e.getKey(),e.getValue()));
 		System.out.println("linkedHashMap "+linkedHashMap);
-		
+
 	}
 
 }
- 
