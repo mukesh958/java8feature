@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 public class ParallelStreamDemo {
 
 	public static void main(String[] args) {

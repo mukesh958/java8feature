@@ -8,16 +8,19 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+
 public class EmpManupulationStream {
 
 	public static void main(String[] args) {
 		List<Emp> list= new ArrayList<Emp>();
 		list.add(new Emp(1, "Rashmi", 50, "HR"));
 		list.add(new Emp(2, "Tina",   30, "HR"));
+		list.add(new Emp(10, "Mukesh", 100, "HR"));
 		list.add(new Emp(3, "Rina",   40, "HR"));
 		
 		list.add(new Emp(4, "Ravi",   70, "A/C"));
 		list.add(new Emp(5, "Ram",    30, "A/C"));
+		list.add(new Emp(11, "Mukesh", 200, "A/C"));
 		list.add(new Emp(6, "Shyam",  45, "A/C"));
 		
 		list.add(new Emp(7, "Mukesh", 80, "IT"));
@@ -57,6 +60,13 @@ public class EmpManupulationStream {
 		Emp maxSalaryEmp=list.stream().sorted((a,b)->{return b.getSalary()-a.getSalary();}).findFirst().get();
 		System.out.println("maxSalaryEmp "+maxSalaryEmp);
 		
+		
+		//Department wise second highest salary...
+		Map<String, Optional<Emp>> departpmentWiseSecondHighestSalariedEmployee = list.stream().collect(Collectors.groupingBy(Emp::getDepartment,
+				Collectors.collectingAndThen(Collectors.toList(), 
+						lst->lst.stream().sorted(Comparator.comparingInt(Emp::getSalary).reversed()).skip(1).findFirst())));
+		System.out.println("departpmentWiseSecondHighestSalariedEmployee \n"+departpmentWiseSecondHighestSalariedEmployee);
+		
 		//Employee with 2nd highest salary
 		Comparator<Emp> com=(a,b)->{
 	    	return b.getSalary()-a.getSalary();
@@ -77,6 +87,16 @@ public class EmpManupulationStream {
 		};
 		List<Emp> listEmp=list.stream().map(fun).collect(Collectors.toList());
 		System.out.println("listEmp "+listEmp);
+		Comparator<Emp> comparator=(e1,e2)->{
+	    	return e1.getSalary()-e2.getSalary();
+	    };
+		Emp empMax1 = list.stream().filter(e->e.getName().equalsIgnoreCase("Mukesh")).max(comparator).get();
+		System.out.println("empMax1 "+empMax1);
+		
+		Emp empMax2 = list.stream().filter(e->e.getName().equalsIgnoreCase("Mukesh")).max(Comparator.comparingInt(Emp::getSalary)).get();
+		System.out.println("empMax2 "+empMax2);
+		
+		
 	}
 
 }

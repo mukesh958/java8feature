@@ -21,7 +21,7 @@ public class StringStreamDemo {
 				
 				//First non repeated character from string
 				String firstNonRepeatableCharacter=Arrays.asList(str.split("")).stream().collect(Collectors.groupingBy(e->e,LinkedHashMap::new,Collectors.counting())).
-						entrySet().stream().filter(e->e.getValue()==1).map(e->e.getKey()).findFirst().get();
+						entrySet().stream().filter(e->e.getValue()==1 && e.getKey()!=" ").map(e->e.getKey()).findFirst().get();
 				System.out.println("firstNonRepeatableCharacter "+firstNonRepeatableCharacter);
 				
 				//Second highest number from an array
@@ -29,6 +29,15 @@ public class StringStreamDemo {
 				Integer secondHighest=Arrays.stream(arr).boxed().
 						sorted((a1,a2)->{return a2-a1;}).skip(1).findFirst().get();
 				System.out.println("secondHighest "+secondHighest);
+				
+				String original = "iloveindialol";
+				StringBuilder replaced = new StringBuilder(original);
+				for (int i = 3; i < original.length(); i =i+ 4) {
+				    replaced.setCharAt(i, '_');
+				}
+				System.out.println("String with every third character replaced: " + replaced);
+				
+				
 
 	}
 

@@ -1,9 +1,10 @@
 <b>Java8 Interview Questions:</b>
 
 
-1. a-How to find department wise max salary Employee
-   b-How to find department wise max salary
-   c-How to find department wise Employee Name
+1. a)-How to find department wise max salary Employee<br>
+   b)-How to find department wise max salary<br>
+   c)-How to find department wise Employee Name<br>
+   d)-How to find department wise second highest salaried Employee<br>
 2. Department wise employee count
 3. How to second highest salary of an employee
 4. Collectors.joining() method use case
